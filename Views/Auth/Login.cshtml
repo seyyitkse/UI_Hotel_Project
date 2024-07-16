@@ -1,5 +1,4 @@
-﻿@model HotelProject.WebUI.Dtos.AppUserDto.UserRegisterDto
-
+﻿@model HotelProject.WebUI.Dtos.AppUserDto.UserLoginDto
 @{
     Layout = null;
 }
@@ -11,12 +10,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Kullanıcı Kayıt Sayfası</title>
+    <title>Otel Rezervasyon Sitesi Giriş Sayfası</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="~/adminweb/css/style.css" rel="stylesheet" />
-
 </head>
 
 <body class="h-100">
@@ -49,39 +46,23 @@
                                     </div>
                                     <div>
                                         <a href="#" style="text-decoration: none; color: inherit;">
-                                            <h4>Otel Rezervasyon Sitesi Kayıt Sayfası</h4>
+                                            <h4>Otel Rezervasyon Sitesi Giriş Sayfası</h4>
                                         </a>
                                     </div>
                                 </div>
 
-                                <form asp-action="Register" asp-controller="User" method="post" class="mt-5 mb-5 login-input">
+                                <form asp-action="Login" asp-controller="Auth" method="post" class="mt-5 mb-5 login-input">
                                     <div class="form-group">
-                                        <input type="text" asp-for="Name" class="form-control" placeholder="Adınız" />
-                                        <span asp-validation-for="Name" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" asp-for="Surname" class="form-control" placeholder="Soyadınız" />
-                                        <span asp-validation-for="Surname" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" asp-for="City" class="form-control" placeholder="Şehir" />
-                                        <span asp-validation-for="City" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="email" asp-for="Mail" class="form-control" placeholder="Mail Adresiniz" />
+                                        <input type="email" asp-for="Mail" class="form-control" placeholder="Email" />
                                         <span asp-validation-for="Mail" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" asp-for="Password" class="form-control" placeholder="Şifrenizi Giriniz" />
+                                        <input type="password" asp-for="Password" class="form-control" placeholder="Password" />
                                         <span asp-validation-for="Password" class="text-danger"></span>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" asp-for="ConfirmPassword" class="form-control" placeholder="Şifrenizi Tekrar Giriniz" />
-                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                    </div>
-                                    <button class="btn btn-primary" asp-action="Register" asp-controller="Auth">Kayıt Ol</button>
+                                    <button class="btn login-form__btn submit w-100">Sign In</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">Hesabınız var mı? <a asp-action="Login" asp-controller="Auth" class="text-primary">Şimdi Giriş Yapın</a> </p>
+                                <p class="mt-5 login-form__footer">Hesabınız yok mu? <a asp-action="Register" asp-controller="Auth" class="text-primary">Şimdi Kaydolun</a></p>
                             </div>
                         </div>
                     </div>
