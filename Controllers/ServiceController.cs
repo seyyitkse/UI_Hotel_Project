@@ -1,5 +1,5 @@
-﻿using HotelProject.WebUI.Dtos.ServiceDto;
-using HotelProject.WebUI.Models.Staff;
+﻿using HotelProject.WebUI.Dtos.AboutDto;
+using HotelProject.WebUI.Dtos.ServiceDto;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -22,7 +22,7 @@ namespace HotelProject.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultAboutDto>>(jsonData);
                 return View(values);
             }
             return View();
