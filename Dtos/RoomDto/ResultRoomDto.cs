@@ -11,5 +11,6 @@
         public string? BathCount { get; set; }
         public string? Wifi { get; set; }
         public string? Description { get; set; }
+        public int Star { get; set; }
     }
 }
