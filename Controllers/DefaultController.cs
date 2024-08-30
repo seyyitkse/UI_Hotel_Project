@@ -47,7 +47,7 @@ namespace HotelProject.WebUI.Controllers
             {
                 return RedirectToAction("Index");
             }
-            return PartialView();
+            return PartialView(); 
         }
     }
 }
