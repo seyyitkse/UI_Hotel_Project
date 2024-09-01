@@ -30,6 +30,10 @@ namespace HotelProject.WebUI.Controllers
             {
                 return RedirectToAction("Index");
             }
+            createBookingDto.Name = "deneme1";
+            createBookingDto.TotalPrice = 1000;
+            createBookingDto.Description =string.Empty;
+            createBookingDto.SpecialRequests= "deneme1";
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBookingDto);
             StringContent jsonService = new StringContent(jsonData, Encoding.UTF8, "application/json");
