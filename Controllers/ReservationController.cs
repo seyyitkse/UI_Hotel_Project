@@ -16,9 +16,9 @@ namespace HotelProject.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public IActionResult Index()
+        public PartialViewResult Index()
         {
-            return View();
+            return PartialView();
         }
 
         [HttpPost]
@@ -29,16 +29,31 @@ namespace HotelProject.WebUI.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Sample logic, you can modify or remove
-            createBookingDto.TotalPrice = 1000;
+            // Optional sample logic
             createBookingDto.Description = string.Empty;
-            createBookingDto.SpecialRequests ="No special requests";
             createBookingDto.Status = "Pending";
-            createBookingDto.CreatedDate = DateTime.Now;
-            createBookingDto.UpdatedDate = DateTime.Now;
+
+            // Ensure CheckInDate and CheckOutDate are formatted correctly
+            var checkInDateFormatted = createBookingDto.CheckInDate?.ToString("yyyy-MM-ddTHH:mm:ss.fff");
+            var checkOutDateFormatted = createBookingDto.CheckOutDate?.ToString("yyyy-MM-ddTHH:mm:ss.fff");
+
+            // Prepare the data with formatted dates
+            var bookingData = new
+            {
+                createBookingDto.Name,
+                createBookingDto.Mail,
+                CheckInDate = checkInDateFormatted,
+                CheckOutDate = checkOutDateFormatted,
+                createBookingDto.AdultCount,
+                createBookingDto.ChildCount,
+                createBookingDto.RoomCount,
+                createBookingDto.SpecialRequests,
+                createBookingDto.Description,
+                createBookingDto.Status
+            };
 
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createBookingDto);
+            var jsonData = JsonConvert.SerializeObject(bookingData);
             StringContent jsonService = new StringContent(jsonData, Encoding.UTF8, "application/json");
 
             var responseMessage = await client.PostAsync("http://localhost:5077/api/Reserve", jsonService);
