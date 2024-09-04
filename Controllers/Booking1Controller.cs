@@ -31,7 +31,6 @@ namespace HotelProject.WebUI.Controllers
                 return RedirectToAction("Index");
             }
             createBookingDto.Name = "deneme1";
-            createBookingDto.TotalPrice = 1000;
             createBookingDto.Description =string.Empty;
             createBookingDto.SpecialRequests= "deneme1";
             var client = _httpClientFactory.CreateClient();
