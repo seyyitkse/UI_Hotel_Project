@@ -40,15 +40,15 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" asp-for="CheckInDate" id="checkin" placeholder="Giriş Tarihi" data-target="#date3" data-toggle="datetimepicker" />
-                                    <label for="checkin">Giriş Tarihi</label>
+                                <div class="input-group date" id="date3">
+                                    <input type="text" class="form-control" asp-for="CheckInDate" placeholder="Giriş Tarihi" />
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-floating date" id="date4" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" asp-for="CheckOutDate" id="checkout" placeholder="Çıkış Tarihi" data-target="#date4" data-toggle="datetimepicker" />
-                                    <label for="checkout">Çıkış Tarihi</label>
+                                <div class="input-group date" id="date4">
+                                    <input type="text" class="form-control" asp-for="CheckOutDate" placeholder="Çıkış Tarihi" />
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -99,4 +99,49 @@
     </div>
 </div>
 
+<!-- Ensure jQuery is loaded first -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
+<!-- Load Tempus Dominus JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempus-dominus/5.1.2/js/tempus-dominus.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Use the correct initialization for Tempus Dominus
+        const checkInElement = document.getElementById('date3');
+        const checkOutElement = document.getElementById('date4');
+
+        if (checkInElement) {
+            new tempusDominus.TempusDominus(checkInElement, {
+                display: {
+                    components: {
+                        calendar: true,
+                        date: true,
+                        month: true,
+                        year: true,
+                        hours: true,
+                        minutes: true,
+                        seconds: false,
+                    }
+                }
+            });
+        }
+
+        if (checkOutElement) {
+            new tempusDominus.TempusDominus(checkOutElement, {
+                display: {
+                    components: {
+                        calendar: true,
+                        date: true,
+                        month: true,
+                        year: true,
+                        hours: true,
+                        minutes: true,
+                        seconds: false,
+                    }
+                }
+            });
+        }
+    });
+</script>
