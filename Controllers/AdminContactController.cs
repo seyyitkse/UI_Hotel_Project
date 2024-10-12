@@ -20,10 +20,17 @@ namespace HotelProject.WebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("http://localhost:5077/api/Contact");
-            if (responseMessage.IsSuccessStatusCode)
+            var responseMessage2 = await client.GetAsync($"http://localhost:5077/api/SendMessage/GetSendMessageCount");
+            var responseMessage3 = await client.GetAsync($"http://localhost:5077/api/Contact/GetContactCount");
+            if (responseMessage.IsSuccessStatusCode && responseMessage2.IsSuccessStatusCode && responseMessage3.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
+                var jsonData3 = await responseMessage3.Content.ReadAsStringAsync();
+
                 var values = JsonConvert.DeserializeObject<List<ResultContactDto>>(jsonData);
+                ViewBag.SendMessageCount = jsonData2;
+                ViewBag.ContactMessageCount = jsonData3;
                 return View(values);
             }
             return View();
@@ -53,10 +60,18 @@ namespace HotelProject.WebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("http://localhost:5077/api/SendMessage");
-            if (responseMessage.IsSuccessStatusCode)
+            var responseMessage2 = await client.GetAsync($"http://localhost:5077/api/SendMessage/GetSendMessageCount");
+            var responseMessage3 = await client.GetAsync($"http://localhost:5077/api/Contact/GetContactCount");
+
+            if (responseMessage.IsSuccessStatusCode && responseMessage2.IsSuccessStatusCode && responseMessage3.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
+                var jsonData3 = await responseMessage3.Content.ReadAsStringAsync();
+
                 var values = JsonConvert.DeserializeObject<List<ResultSendMessageDto>>(jsonData);
+                ViewBag.SendMessageCount = jsonData2;
+                ViewBag.ContactMessageCount = jsonData3;
                 return View(values);
             }
             return View();
@@ -90,8 +105,9 @@ namespace HotelProject.WebUI.Controllers
             return PartialView();
         }
 
-        public PartialViewResult SidebarAdminContactCategoryPartial()
+        public  PartialViewResult SidebarAdminContactCategoryPartialAsync()
         {
+      
             return PartialView();
         }
     }
